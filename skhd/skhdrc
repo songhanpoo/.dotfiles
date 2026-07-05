@@ -1,0 +1,64 @@
+# --- Changing Focus ---
+# change window focus within space
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - h : yabai -m window --focus west
+alt - l : yabai -m window --focus east
+
+# change focus to display left and right
+alt - s: yabai -m display --focus west
+alt - g: yabai -m display --focus east
+
+# --- Modify Layout ---
+
+# balance out tree 
+hyper - e : yabai -m space --balance
+
+# rotate layout clockwise
+shift + alt - r : yabai -m space --rotate 270
+
+# flip along y-axis
+shift + alt - y : yabai -m space --mirror y-axis
+
+# flip along x-axis
+
+# --- Moving Windows Arround ---
+
+# swap windows within space
+
+# maximize a window
+shift + alt - m : yabai -m window --toggle zoom-fullscreen
+
+# toggle window float
+shift + alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+# move window and split
+cmd + shift - h : yabai -m window --warp west || yabai -m window --display west
+cmd + shift - l : yabai -m window --warp east || yabai -m window --display east
+cmd + shift - j : yabai -m window --warp south 
+cmd + shift - k : yabai -m window --warp north
+
+# move window to space 1
+# shift + alt - 1 : yabai -m window --space 1
+#
+# # move window to space 2
+# shift + alt - 2 : yabai -m window --space 2
+#
+# # move window to space 3
+# shift + alt - 3 : yabai -m window --space 3
+#
+# # move and follow it
+# shift + alt - n : yabai -m window --space next
+
+
+# hyper - s : yabai -m window --display west; yabai -m display --focus west;
+# hyper - g : yabai -m window --display east; yabai -m display --focus east;
+# shift + alt - n : yabai -m window --display next; yabai -m display --focus next
+# shift + alt - p : yabai -m window --display prev; yabai -m display --focus prev
+shift + alt - n : yabai -m window --space next; yabai -m space --focus next
+shift + alt - p : yabai -m window --space prev; yabai -m space --focus prev
+#
+# stop/start/restart yabai
+ctrl + alt - q : yabai --stop-service
+ctrl + alt - s : yabai --start-service
+ctrl + alt - r : yabai --restart-service
