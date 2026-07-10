@@ -8,6 +8,7 @@ return {
     },
     opts = {
       servers = {
+        svelte = {},
         pyright = {},
         terraformls = {},
 

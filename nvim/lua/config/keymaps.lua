@@ -8,3 +8,6 @@
 --     { "<leader>i", group = "iOS / XcodeBuild" },
 --   })
 -- end
+-- Press Ctrl+b in Visual Mode to instantly wrap selection in **
+vim.keymap.set("v", "<C-b>", "gS**", { remap = true, desc = "Markdown Bold Selection" })
+vim.keymap.set("v", "<C-k>", "gS]", { remap = true, desc = "Markdown Bold Selection" })

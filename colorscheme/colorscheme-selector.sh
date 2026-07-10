@@ -3,11 +3,11 @@
 # Filename: ~/github/dotfiles-latest/colorscheme/colorscheme-selector.sh
 
 # Path to the directory containing color scheme scripts
-COLORSCHEME_DIR=~/github/dotfiles-latest/colorscheme/list
+COLORSCHEME_DIR=~/.config/colorscheme/list
 
 # Path to the colorscheme-set.sh script
-COLORSCHEME_SET_SCRIPT=~/github/dotfiles-latest/zshrc/colorscheme-set.sh
-FZF_COLORS_FILE=~/github/dotfiles-latest/colorscheme/active/active-fzf-colors.sh
+COLORSCHEME_SET_SCRIPT=~/.config/colorscheme/colorscheme-set.sh
+FZF_COLORS_FILE=~/.config/colorscheme/active/active-fzf-colors.sh
 
 # Ensure fzf is installed
 if ! command -v fzf &>/dev/null; then

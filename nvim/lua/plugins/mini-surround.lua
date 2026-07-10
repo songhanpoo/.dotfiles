@@ -1,13 +1,19 @@
 return {
-  -- 2. Enable and configure nvim-surround instead
   {
     "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omits breaking changes
+    version = "*",
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup({
-        -- You can leave this empty to use the standard default keymaps
+        keymaps = {
+          -- Sets the visual mode surround key to gS instead of S
+          visual = "gS",
+        },
       })
     end,
+  },
+  {
+    "echasnovski/mini.surround",
+    enabled = false,
   },
 }
