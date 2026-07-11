@@ -158,3 +158,11 @@ dotfiles/
    brew install fzf
    brew install yazi
    ```
+
+
+
+
+## Demos
+![demo-1](/demo-1.png) 
+![demo-2](/demo-2.png) 
+
