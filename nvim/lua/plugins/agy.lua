@@ -1,28 +1,24 @@
--- lazy.nvim
 return {
   "Showwaiyan/antigravity.nvim",
   config = function()
     require("antigravity").setup({
-      -- Optional configuration overrides
       cmd = "agy",
-      disable_links = false, -- Set to true to disable clickable markdown/file:// links and use plain text names
+      disable_links = false,
       ask = {
-        split = "right", -- "right", "left", "above", "below"
-        width = 0.4, -- fractional width (40%) or absolute column count
+        split = "right",
+        width = 0.4,
       },
       mappings = {
-        -- Custom terminal buffer mappings for scrolling the chat history.
-        -- Set to nil or empty string to disable.
-        scroll_up = "<C-u>", -- e.g. <leader>up
-        scroll_down = "<C-d>", -- e.g. <leader>dn
+        scroll_up = "<C-u>",
+        scroll_down = "<C-d>",
       },
     })
   end,
   keys = {
-    { "<leader>aa", "<cmd>AntigravityAsk<cr>", desc = "Ask Antigravity (Normal Mode)" },
-    { "<leader>aa", ":AntigravityAsk ", mode = "v", desc = "Ask Antigravity (Visual Selection)" },
-    { "<leader>as", "<cmd>AntigravitySelect<cr>", desc = "Select Preset Prompt (Normal Mode)" },
-    { "<leader>as", ":AntigravitySelect<cr>", mode = "v", desc = "Select Preset Prompt (Visual Selection)" },
-    { "<leader>at", "<cmd>AntigravityToggle<cr>", desc = "Toggle Antigravity Terminal" },
+    { "<leader>ai", "<cmd>AntigravityAsk<cr>", desc = "AI Ask" },
+    { "<leader>ap", "<cmd>AntigravitySelect<cr>", desc = "AI Prompt" },
+    { "<leader>at", "<cmd>AntigravityToggle<cr>", desc = "AI Toggle" },
+    { "<leader>ai", ":AntigravityAsk ", mode = "v", desc = "AI Ask Selection" },
+    { "<leader>ap", ":AntigravitySelect<cr>", mode = "v", desc = "AI Prompt Selection" },
   },
 }

@@ -1,4 +1,18 @@
-# --- Changing Focus ---
+
+# --- Quick Window Ratio Adjustments ---
+
+# Force active window to take up 30% of the screen (leaving 70% for the other)
+alt - 3 : yabai -m window --ratio abs:0.30
+
+# Force active window to take up 40% of the screen (leaving 60% for the other)
+alt - 4 : yabai -m window --ratio abs:0.40
+
+# Force active window to take up 70% of the screen (leaving 30% for the other)
+alt - 7 : yabai -m window --ratio abs:0.70
+
+# Instantly split 50/50 (Reset)
+alt - 5 : yabai -m window --ratio abs:0.50
+
 # change window focus within space
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
@@ -39,22 +53,22 @@ cmd + shift - j : yabai -m window --warp south
 cmd + shift - k : yabai -m window --warp north
 
 # move window to space 1
-# shift + alt - 1 : yabai -m window --space 1
-#
-# # move window to space 2
-# shift + alt - 2 : yabai -m window --space 2
-#
-# # move window to space 3
-# shift + alt - 3 : yabai -m window --space 3
-#
-# # move and follow it
-# shift + alt - n : yabai -m window --space next
+shift + alt - 1 : yabai -m window --space 1
+
+# move window to space 2
+shift + alt - 2 : yabai -m window --space 2
+
+# move window to space 3
+shift + alt - 3 : yabai -m window --space 3
+
+# move and follow it
+shift + alt - n : yabai -m window --space next
 
 
-# hyper - s : yabai -m window --display west; yabai -m display --focus west;
-# hyper - g : yabai -m window --display east; yabai -m display --focus east;
-# shift + alt - n : yabai -m window --display next; yabai -m display --focus next
-# shift + alt - p : yabai -m window --display prev; yabai -m display --focus prev
+hyper - s : yabai -m window --display west; yabai -m display --focus west;
+hyper - g : yabai -m window --display east; yabai -m display --focus east;
+shift + alt - n : yabai -m window --display next; yabai -m display --focus next
+shift + alt - p : yabai -m window --display prev; yabai -m display --focus prev
 shift + alt - n : yabai -m window --space next; yabai -m space --focus next
 shift + alt - p : yabai -m window --space prev; yabai -m space --focus prev
 #

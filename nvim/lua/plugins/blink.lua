@@ -1,14 +1,22 @@
 return {
   {
     "saghen/blink.cmp",
+    optional = true,
     opts = {
       keymap = {
-        preset = "enter", -- Changes confirmation key to <Enter>
-
-        -- Keeps Tab/S-Tab active for cycling through the menu lists
-        ["<Tab>"] = { "select_next", "fallback" },
-        ["<S-Tab>"] = { "select_prev", "fallback" },
+        preset = "enter",
+        ["<CR>"] = { "select_and_accept", "fallback" },
       },
     },
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    optional = true,
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      opts.mapping = vim.tbl_extend("force", opts.mapping or {}, {
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      })
+    end,
   },
 }

@@ -2,14 +2,30 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
+    tag = "v1.4.0",
     dependencies = {
-      -- 👍 Keep this one if you like file operations support, drop the cmp one
       { "antosha417/nvim-lsp-file-operations", config = true },
     },
     opts = {
       servers = {
         svelte = {},
-        pyright = {},
+        pyright = {
+          -- Helps pyright locate your poetry/virtualenv project roots smoothly
+          root_dir = function(filename)
+            local util = require("lspconfig.util")
+            return util.root_pattern("pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git")(filename)
+              or util.path.dirname(filename)
+          end,
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "workspace",
+              },
+            },
+          },
+        },
         terraformls = {},
 
         markdown_oxide = {
@@ -17,11 +33,19 @@ return {
         },
 
         sourcekit = {
+
           cmd = { "xcrun", "sourcekit-lsp" },
           filetypes = { "swift", "objective-c", "objective-cpp" },
-          root_dir = function(filename)
+          -- FIXED: Fallback to the current file's directory so it works on single files!
+          root_dir = function(filename, _)
             local util = require("lspconfig.util")
-            return util.root_pattern("buildServer.json", "Package.swift", ".git")(filename)
+            local project_root = util.root_pattern("buildServer.json", "Package.swift", ".git")(filename)
+
+            if project_root then
+              return project_root
+            end
+            -- Fallback option
+            return util.path.dirname(filename)
           end,
         },
 
@@ -31,13 +55,7 @@ return {
           filetypes_exclude = { "markdown" },
           -- add additional filetypes to the default_config
           filetypes_include = {},
-          -- to fully override the default_config, change the below
-          -- filetypes = {}
-
-          -- additional settings for the server, e.g:
-          -- tailwindCSS = { includeLanguages = { someLang = "html" } }
-          -- can be addeded to the settings table and will be merged with
-          -- this defaults for Phoenix projects
+          -- additional settings for the server
           settings = {
             tailwindCSS = {
               includeLanguages = {
@@ -71,11 +89,15 @@ return {
         tailwindcss = function(_, opts)
           opts.filetypes = opts.filetypes or {}
 
-          -- Add default filetypes
-          vim.list_extend(opts.filetypes, vim.lsp.config.tailwindcss.filetypes)
+          -- FIXED: Safe fallback method to extract default filetypes from v1.4.0 lspconfig mapping
+          local default_ftp = {}
+          local status, lsp_tailwind = pcall(require, "lspconfig.configs.tailwindcss")
+          if status and lsp_tailwind and lsp_tailwind.default_config then
+            default_ftp = lsp_tailwind.default_config.filetypes or {}
+          end
+          vim.list_extend(opts.filetypes, default_ftp)
 
           -- Remove excluded filetypes
-          --- @param ft string
           opts.filetypes = vim.tbl_filter(function(ft)
             return not vim.tbl_contains(opts.filetypes_exclude or {}, ft)
           end, opts.filetypes)

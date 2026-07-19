@@ -15,6 +15,7 @@ mouse-hide-while-typing = true
 command = zsh --login -c "if command -v tmux >/dev/null 2>&1; then tmux attach || tmux; else zsh; fi"
 
 # Window
+macos-option-as-alt = left
 macos-titlebar-style = hidden
 window-save-state = always
 maximize = true

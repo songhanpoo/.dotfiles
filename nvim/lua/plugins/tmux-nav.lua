@@ -8,9 +8,9 @@ return {
     "TmuxNavigatePrevious",
   },
   keys = {
-    { "<ctrl-h>", "<cmd>TmuxNavigateLeft<cr>", desc = "Window Left" },
-    { "<ctrl-j>", "<cmd>TmuxNavigateDown<cr>", desc = "Window Down" },
-    { "<ctrl-k>", "<cmd>TmuxNavigateUp<cr>", desc = "Window Up" },
-    { "<ctrl-l>", "<cmd>TmuxNavigateRight<cr>", desc = "Window Right" },
+    { "<leader>wh", "<cmd>TmuxNavigateLeft<cr>", desc = "Window Left" },
+    { "<leader>wj", "<cmd>TmuxNavigateDown<cr>", desc = "Window Down" },
+    { "<leader>wk", "<cmd>TmuxNavigateUp<cr>", desc = "Window Up" },
+    { "<leader>wl", "<cmd>TmuxNavigateRight<cr>", desc = "Window Right" },
   },
 }
