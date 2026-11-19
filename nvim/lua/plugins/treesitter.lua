@@ -3,8 +3,8 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
+      opts.folds = { enable = true } -- LazyVim key is `folds` on the main branch
       vim.list_extend(opts.ensure_installed, {
-        "ansible-lint",
         "bash",
         "html",
         "http",

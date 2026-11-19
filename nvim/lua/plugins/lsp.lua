@@ -8,6 +8,18 @@ return {
     },
     opts = {
       servers = {
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                allFeatures = true,
+              },
+              checkOnSave = {
+                command = "clippy",
+              },
+            },
+          },
+        },
         svelte = {},
         pyright = {
           -- Helps pyright locate your poetry/virtualenv project roots smoothly
@@ -26,6 +38,7 @@ return {
             },
           },
         },
+        ruff = {},
         terraformls = {},
 
         markdown_oxide = {
@@ -81,6 +94,21 @@ return {
 
               opts.desc = "Show documentation for what is under cursor"
               vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+
+              opts.desc = "Go to definition"
+              vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+
+              opts.desc = "Go to declaration"
+              vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+
+              opts.desc = "Go to implementation"
+              vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
+
+              opts.desc = "Go to type definition"
+              vim.keymap.set("n", "go", vim.lsp.buf.type_definition, opts)
+
+              opts.desc = "Show references"
+              vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
             end,
           })
         end,

@@ -51,10 +51,19 @@ return {
         },
       }
 
+      -- Advertise blink.cmp's completion capabilities so jdtls supports completionItem/resolve
+      local capabilities = vim.tbl_deep_extend(
+        "force",
+        vim.lsp.protocol.make_client_capabilities(),
+        require("blink.cmp").get_lsp_capabilities()
+      )
+
       -- Initialize the language server connection
       require("jdtls").start_or_attach({
         cmd = cmd,
         settings = settings,
+        capabilities = capabilities,
+        init_options = { extendedClientCapabilities = require("jdtls").extendedClientCapabilities },
         root_dir = require("jdtls.setup").find_root({ ".git", "pom.xml", "build.gradle", "mvnw", "gradlew" }),
       })
     end,
