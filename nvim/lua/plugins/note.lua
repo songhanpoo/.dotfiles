@@ -10,34 +10,8 @@ return {
       if vim.fn.isdirectory(notes_dir) == 0 then
         vim.fn.mkdir(notes_dir, "p")
       end
-
-      -- BULLETPROOF FIX: Force has_parser to exist, preventing any future overwrite from breaking it
-      local function dynamic_mock()
-        local parsers = package.loaded["nvim-treesitter.parsers"] or {}
-        if not parsers.has_parser then
-          parsers.has_parser = function()
-            return false
-          end
-        end
-        package.loaded["nvim-treesitter.parsers"] = parsers
-      end
-
-      dynamic_mock()
-
-      setmetatable(package.loaded, {
-        __index = function(t, key)
-          if key == "nvim-treesitter.parsers" then
-            dynamic_mock()
-          end
-          return rawget(t, key)
-        end,
-        __newindex = function(t, key, value)
-          rawset(t, key, value)
-          if key == "nvim-treesitter.parsers" then
-            dynamic_mock()
-          end
-        end,
-      })
+      -- note.nvim's ftplugin calls the removed `parsers.has_parser()` API;
+      -- ftplugin/note.lua in this config shims it before that runs.
     end,
     keys = {
       -- 🌟 Shifted from <leader>n to <leader>o to protect notification history

@@ -12,7 +12,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     enabled = false,
   },
 }
